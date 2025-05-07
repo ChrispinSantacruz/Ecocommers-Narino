@@ -16,7 +16,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from 
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useMobile } from "@/hooks/use-mobile"
@@ -30,9 +30,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Helecho nativo de la región de Nariño, perfecto para ambientes húmedos y con poca luz.",
     cuidados: "Riego moderado, luz indirecta, ambiente húmedo.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Helecho",
+    imagen: "/producto-helecho-costeno.jpg",
     vendedor: "Vivero El Paraíso",
     ubicacion: "Pasto, Nariño",
+    cantidad: 1,
   },
   {
     id: 2,
@@ -41,9 +42,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Hermosa orquídea que crece en los páramos de Nariño, con flores duraderas y coloridas.",
     cuidados: "Riego escaso, luz indirecta brillante, sustrato especial para orquídeas.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Orquídea",
+    imagen: "/orquideaDeParamo.jpg",
     vendedor: "Orquídeas del Sur",
     ubicacion: "Ipiales, Nariño",
+    cantidad: 1,
   },
   {
     id: 3,
@@ -52,9 +54,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Suculenta resistente adaptada a climas fríos, ideal para principiantes.",
     cuidados: "Riego escaso, luz directa, sustrato bien drenado.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Suculenta",
+    imagen: "/suculentaAndina.jpg",
     vendedor: "Vivero Botánico",
     ubicacion: "Túquerres, Nariño",
+    cantidad: 1,
   },
   {
     id: 4,
@@ -63,9 +66,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Planta tropical con hojas coloridas y una flor central espectacular.",
     cuidados: "Mantener agua en el centro de la roseta, luz indirecta brillante.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Bromelia",
+    imagen: "/bromeliaTropical.jpg",
     vendedor: "Jardines del Pacífico",
     ubicacion: "Tumaco, Nariño",
+    cantidad: 1,
   },
   {
     id: 5,
@@ -74,9 +78,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Elegante palma que aporta un toque tropical a cualquier espacio interior.",
     cuidados: "Riego moderado, luz indirecta, limpiar hojas regularmente.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Palma",
+    imagen: "/palmadesalon.jpg",
     vendedor: "Vivero El Paraíso",
     ubicacion: "Pasto, Nariño",
+    cantidad: 1,
   },
   {
     id: 6,
@@ -85,9 +90,10 @@ const plantasData = [
     categoria: "Exterior",
     descripcion: "Cactus de crecimiento vertical, perfecto para jardines de bajo mantenimiento.",
     cuidados: "Riego muy escaso, luz directa, proteger de heladas.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Cactus",
+    imagen: "/cactuscolumnar.jpg",
     vendedor: "Cactus y Suculentas",
     ubicacion: "La Unión, Nariño",
+    cantidad: 1,
   },
   {
     id: 7,
@@ -96,9 +102,10 @@ const plantasData = [
     categoria: "Exterior",
     descripcion: "Aromática lavanda adaptada al clima de Nariño, atrae polinizadores.",
     cuidados: "Riego moderado, pleno sol, podar después de floración.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Lavanda",
+    imagen: "/lavandanariñense.jpg",
     vendedor: "Aromáticas del Sur",
     ubicacion: "Buesaco, Nariño",
+    cantidad: 1,
   },
   {
     id: 8,
@@ -107,9 +114,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Begonia de hojas decorativas con patrones y colores únicos.",
     cuidados: "Riego cuando el sustrato esté seco, luz indirecta, ambiente húmedo.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Begonia",
+    imagen: "/begoniaRex.jpg",
     vendedor: "Vivero Botánico",
     ubicacion: "Túquerres, Nariño",
+    cantidad: 1,
   },
   {
     id: 9,
@@ -118,9 +126,10 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Planta suculenta de fácil cuidado que simboliza prosperidad y buena suerte.",
     cuidados: "Riego escaso, luz brillante, sustrato bien drenado.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Jade",
+    imagen: "/arboldejade.jpg",
     vendedor: "Cactus y Suculentas",
     ubicacion: "La Unión, Nariño",
+    cantidad: 1,
   },
   {
     id: 10,
@@ -129,10 +138,140 @@ const plantasData = [
     categoria: "Interior",
     descripcion: "Planta de interior con grandes hojas en forma de violín, muy decorativa.",
     cuidados: "Riego moderado, luz indirecta brillante, evitar corrientes de aire.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Ficus",
+    imagen: "/ficus Lyrata.jpg",
+    vendedor: "Vivero El Paraíso",
+    ubicacion: "Pasto, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 11,
+    nombre: "Aloe Vera",
+    precio: 20000,
+    categoria: "Exterior",
+    descripcion: "Planta medicinal conocida por sus propiedades curativas y estéticas.",
+    cuidados: "Riego escaso, luz directa, sustrato bien drenado.",
+    imagen: "/AloeVera.jpg",
+    vendedor: "Plantas Medicinales",
+    ubicacion: "Pasto, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 12,
+    nombre: "Cactus Bola",
+    precio: 18000,
+    categoria: "Exterior",
+    descripcion: "Cactus compacto ideal para jardines pequeños o macetas decorativas.",
+    cuidados: "Riego muy escaso, luz directa, proteger de heladas.",
+    imagen: "/CactusBola.jpg",
+    vendedor: "Cactus y Suculentas",
+    ubicacion: "La Unión, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 13,
+    nombre: "Calathea Orbifolia",
+    precio: 40000,
+    categoria: "Interior",
+    descripcion: "Planta de hojas grandes y rayadas, perfecta para decoración interior.",
+    cuidados: "Riego moderado, luz indirecta, ambiente húmedo.",
+    imagen: "/CalatheaOrbifolia.jpg",
+    vendedor: "Vivero Botánico",
+    ubicacion: "Túquerres, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 14,
+    nombre: "Crotón",
+    precio: 30000,
+    categoria: "Interior",
+    descripcion: "Planta de hojas coloridas que aporta un toque vibrante a cualquier espacio.",
+    cuidados: "Riego moderado, luz indirecta brillante, evitar corrientes de aire.",
+    imagen: "/Crotón.jpg",
     vendedor: "Jardines del Pacífico",
     ubicacion: "Tumaco, Nariño",
+    cantidad: 1,
   },
+  {
+    id: 15,
+    nombre: "Ficus Benjamina",
+    precio: 50000,
+    categoria: "Interior",
+    descripcion: "Árbol de interior con hojas pequeñas y brillantes, muy elegante.",
+    cuidados: "Riego moderado, luz indirecta, evitar cambios bruscos de temperatura.",
+    imagen: "/Ficus Benjamina.jpg",
+    vendedor: "Vivero El Paraíso",
+    ubicacion: "Pasto, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 16,
+    nombre: "Geranio",
+    precio: 15000,
+    categoria: "Exterior",
+    descripcion: "Planta de flores coloridas y fragantes, ideal para jardines y balcones.",
+    cuidados: "Riego moderado, pleno sol, podar después de floración.",
+    imagen: "/Geranio.jpg",
+    vendedor: "Aromáticas del Sur",
+    ubicacion: "Buesaco, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 17,
+    nombre: "Helecho Espada",
+    precio: 25000,
+    categoria: "Interior",
+    descripcion: "Helecho clásico de hojas largas y verdes, ideal para colgar en macetas.",
+    cuidados: "Riego moderado, luz indirecta, ambiente húmedo.",
+    imagen: "/HelechoEspada.jpg",
+    vendedor: "Vivero Botánico",
+    ubicacion: "Túquerres, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 18,
+    nombre: "Lavanda Inglesa",
+    precio: 20000,
+    categoria: "Exterior",
+    descripcion: "Variedad de lavanda con flores fragantes y duraderas.",
+    cuidados: "Riego moderado, pleno sol, podar después de floración.",
+    imagen: "/Lavanda Inglesa.jpg",
+    vendedor: "Aromáticas del Sur",
+    ubicacion: "Buesaco, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 19,
+    nombre: "Rosa Miniatura",
+    precio: 30000,
+    categoria: "Exterior",
+    descripcion: "Rosal compacto con flores pequeñas y delicadas, ideal para macetas.",
+    cuidados: "Riego moderado, pleno sol, abonar regularmente.",
+    imagen: "/RosaMiniatura.jpg",
+    vendedor: "Jardines del Pacífico",
+    ubicacion: "Tumaco, Nariño",
+    cantidad: 1,
+  },
+  {
+    id: 20,
+    nombre: "Sansevieria",
+    precio: 25000,
+    categoria: "Interior",
+    descripcion: "Planta resistente conocida como lengua de suegra, ideal para principiantes.",
+    cuidados: "Riego escaso, luz indirecta, sustrato bien drenado.",
+    imagen: "/Sansevieria.jpg",
+    vendedor: "Vivero Botánico",
+    ubicacion: "Túquerres, Nariño",
+    cantidad: 1,
+  },
+]
+
+// Añadir precios a los productos recomendados
+const recommendedProducts = [
+  { nombre: "Maceta de cerámica", precio: 15000 },
+  { nombre: "Sustrato orgánico", precio: 10000 },
+  { nombre: "Fertilizante natural", precio: 12000 },
+  { nombre: "Guantes de jardinería", precio: 8000 },
+  { nombre: "Regadera pequeña", precio: 5000 },
 ]
 
 export default function MarketplacePage() {
@@ -155,6 +294,40 @@ export default function MarketplacePage() {
     email: "",
   })
   const [formErrors, setFormErrors] = useState<Record<string, boolean>>({})
+  const [selectedExtras, setSelectedExtras] = useState<Array<{ nombre: string; precio: number }>>([])
+
+  // Añadir productos recomendados al carrito
+  const addRecommendedToCart = (extra: { nombre: string; precio: number }) => {
+    const existingItem = cart.find((item) => item.planta.nombre === extra.nombre);
+
+    if (existingItem) {
+      setCart(
+        cart.map((item) =>
+          item.planta.nombre === extra.nombre
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([
+        ...cart,
+        {
+          planta: {
+            ...extra,
+            id: Date.now(),
+            categoria: "", // Proporcionar valores predeterminados
+            descripcion: "",
+            cuidados: "",
+            imagen: "",
+            vendedor: "",
+            ubicacion: "",
+            cantidad: 1,
+          },
+          cantidad: 1,
+        },
+      ]);
+    }
+  };
 
   // Filtrar plantas
   const filteredPlantas = plantasData.filter((planta) => {
@@ -181,7 +354,7 @@ export default function MarketplacePage() {
   }
 
   // Eliminar del carrito
-  const removeFromCart = (plantaId: number) => {
+  const removeFromCart = (plantaId: number | string) => {
     setCart(cart.filter((item) => item.planta.id !== plantaId))
   }
 
@@ -197,6 +370,9 @@ export default function MarketplacePage() {
 
   // Calcular total
   const cartTotal = cart.reduce((total, item) => total + item.planta.precio * item.cantidad, 0)
+
+  // Calcular total con extras
+  const totalWithExtras = cart.reduce((total, item) => total + item.planta.precio * item.cantidad, 0) + selectedExtras.reduce((total, item) => total + item.precio, 0);
 
   // Generar recibo
   const generateReceipt = () => {
@@ -262,6 +438,77 @@ export default function MarketplacePage() {
     }
   }
 
+  const toggleExtra = (extra: { nombre: string; precio: number }) => {
+    const exists = selectedExtras.find((item) => item.nombre === extra.nombre);
+    if (exists) {
+      setSelectedExtras(selectedExtras.filter((item) => item.nombre !== extra.nombre));
+      // Eliminar del carrito si se deselecciona
+      setCart(cart.filter((item) => item.planta.nombre !== extra.nombre));
+    } else {
+      setSelectedExtras([...selectedExtras, extra]);
+      // Añadir al carrito si se selecciona
+      setCart([
+        ...cart,
+        {
+          planta: {
+            ...extra,
+            id: Date.now(),
+            categoria: "Recomendado", // Categoría para identificar
+            descripcion: "Producto recomendado",
+            cuidados: "",
+            imagen: "", // Imagen por defecto
+            vendedor: "",
+            ubicacion: "",
+            cantidad: 1,
+          },
+          cantidad: 1,
+        },
+      ]);
+    }
+  };
+
+  // Modificar la visualización de productos en el carrito para incluir una imagen por defecto si no tienen una
+  const renderCartItem = (item: { planta: { id: number; imagen: string; nombre: string; precio: number; vendedor: string }; cantidad: number }) => (
+    <div key={item.planta.id} className="flex items-center gap-4 py-2">
+      <Image
+        src={item.planta.imagen || "/hoja.png"} // Imagen por defecto solo en el carrito
+        width={60}
+        height={60}
+        alt={item.planta.nombre}
+        className="rounded-md object-cover"
+      />
+      <div className="flex-1">
+        <h4 className="font-medium text-sm line-clamp-1">{item.planta.nombre}</h4>
+        <p className="text-xs text-muted-foreground">${item.planta.precio.toLocaleString("es-CO")}</p>
+        <p className="text-xs text-muted-foreground flex items-center gap-1">
+          <Store className="h-3 w-3" /> {item.planta.vendedor}
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-6 w-6"
+          onClick={() => updateQuantity(item.planta.id, item.cantidad - 1)}
+        >
+          -
+        </Button>
+        <span className="text-sm">{item.cantidad}</span>
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-6 w-6"
+          onClick={() => updateQuantity(item.planta.id, item.cantidad + 1)}
+        >
+          +
+        </Button>
+      </div>
+      <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.planta.id)}>
+        <X className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="sticky top-0 z-50 w-full border-b bg-white">
@@ -298,7 +545,7 @@ export default function MarketplacePage() {
                 )}
               </Button>
             </DrawerTrigger>
-            <DrawerContent>
+            <DrawerContent className="max-w-md mx-auto">
               <DrawerHeader>
                 <DrawerTitle>Carrito de Compras</DrawerTitle>
               </DrawerHeader>
@@ -312,46 +559,9 @@ export default function MarketplacePage() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {cart.map((item) => (
-                      <div key={item.planta.id} className="flex items-center gap-4 py-2">
-                        <Image
-                          src={item.planta.imagen || "/placeholder.svg"}
-                          width={60}
-                          height={60}
-                          alt={item.planta.nombre}
-                          className="rounded-md object-cover"
-                        />
-                        <div className="flex-1">
-                          <h4 className="font-medium">{item.planta.nombre}</h4>
-                          <p className="text-sm text-muted-foreground">${item.planta.precio.toLocaleString("es-CO")}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1">
-                            <Store className="h-3 w-3" /> {item.planta.vendedor}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => updateQuantity(item.planta.id, item.cantidad - 1)}
-                          >
-                            -
-                          </Button>
-                          <span>{item.cantidad}</span>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => updateQuantity(item.planta.id, item.cantidad + 1)}
-                          >
-                            +
-                          </Button>
-                        </div>
-                        <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.planta.id)}>
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    ))}
+                    <ScrollArea className="max-h-[400px] overflow-y-auto">
+                      {cart.map((item) => renderCartItem(item))}
+                    </ScrollArea>
                     <Separator />
                     <div className="flex justify-between py-2">
                       <span className="font-medium">Total:</span>
@@ -511,89 +721,28 @@ export default function MarketplacePage() {
         <div id="productos" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredPlantas.length > 0 ? (
             filteredPlantas.map((planta) => (
-              <Card key={planta.id} className="overflow-hidden">
+              <Card key={planta.id} className="overflow-hidden max-w-[300px]">
                 <CardHeader className="p-0">
-                  <div className="relative h-48">
+                  <div className="relative h-40 w-full sm:h-60">
                     <Image
                       src={planta.imagen || "/placeholder.svg"}
                       fill
                       alt={planta.nombre}
                       className="object-cover"
                     />
-                    <Badge className="absolute top-2 right-2 bg-green-600">{planta.categoria}</Badge>
+                    <Badge className="absolute top-2 right-2 bg-green-600 text-xs">{planta.categoria}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-lg">{planta.nombre}</CardTitle>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{planta.descripcion}</p>
-                  <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground">
-                    <Store className="h-3 w-3" />
-                    <span>{planta.vendedor}</span>
-                  </div>
-                  <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
-                    <MapPin className="h-3 w-3" />
-                    <span>{planta.ubicacion}</span>
-                  </div>
-                  <p className="font-bold text-lg mt-2">${planta.precio.toLocaleString("es-CO")}</p>
+                  <CardTitle className="text-lg line-clamp-1">{planta.nombre}</CardTitle>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mt-2">{planta.descripcion}</p>
+                  <p className="font-bold text-lg mt-4">${planta.precio.toLocaleString("es-CO")}</p>
                 </CardContent>
                 <CardFooter className="p-4 pt-0 flex gap-2">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="flex-1" onClick={() => setSelectedPlant(planta)}>
-                        Detalles
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[500px]">
-                      {selectedPlant && (
-                        <>
-                          <DialogHeader>
-                            <DialogTitle>{selectedPlant.nombre}</DialogTitle>
-                          </DialogHeader>
-                          <div className="grid gap-4 py-4">
-                            <div className="relative h-60 w-full">
-                              <Image
-                                src={selectedPlant.imagen || "/placeholder.svg"}
-                                fill
-                                alt={selectedPlant.nombre}
-                                className="object-cover rounded-lg"
-                              />
-                            </div>
-                            <div className="space-y-2">
-                              <h3 className="font-medium">Descripción</h3>
-                              <p className="text-sm text-muted-foreground">{selectedPlant.descripcion}</p>
-                            </div>
-                            <div className="space-y-2">
-                              <h3 className="font-medium">Cuidados</h3>
-                              <p className="text-sm text-muted-foreground">{selectedPlant.cuidados}</p>
-                            </div>
-                            <div className="space-y-2">
-                              <h3 className="font-medium">Vendedor</h3>
-                              <div className="flex items-center gap-2 text-sm">
-                                <Store className="h-4 w-4 text-green-600" />
-                                <span>{selectedPlant.vendedor}</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-sm">
-                                <MapPin className="h-4 w-4 text-green-600" />
-                                <span>{selectedPlant.ubicacion}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <p className="font-bold text-lg">${selectedPlant.precio.toLocaleString("es-CO")}</p>
-                              <Button
-                                className="bg-green-600 hover:bg-green-700"
-                                onClick={() => {
-                                  addToCart(selectedPlant)
-                                }}
-                              >
-                                Añadir al Carrito
-                              </Button>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </DialogContent>
-                  </Dialog>
-                  <Button className="flex-1 bg-green-600 hover:bg-green-700" onClick={() => addToCart(planta)}>
+                  <Button variant="outline" size="sm" className="flex-1" onClick={() => setSelectedPlant(planta)}>
+                    Detalles
+                  </Button>
+                  <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700" onClick={() => addToCart(planta)}>
                     Comprar
                   </Button>
                 </CardFooter>
@@ -619,130 +768,66 @@ export default function MarketplacePage() {
       </main>
 
       <Dialog open={showReceipt} onOpenChange={setShowReceipt}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[550px] max-h-[500px] overflow-y-auto text-sm">
           <DialogHeader>
             <DialogTitle>Recibo de Compra</DialogTitle>
           </DialogHeader>
-          <ScrollArea className="max-h-[60vh]">
-            <div className="space-y-6 p-2">
-              <div className="flex flex-col items-center text-center border-b pb-4">
-                <Leaf className="h-8 w-8 text-green-600" />
-                <h2 className="text-xl font-bold text-green-800">Ecocommers Nariño</h2>
-                <p className="text-sm text-muted-foreground">Marketplace de Plantas</p>
-                <p className="text-sm">Fecha: {new Date().toLocaleDateString()}</p>
-                <p className="text-sm">
-                  No. Orden:{" "}
-                  {Math.floor(Math.random() * 1000000)
-                    .toString()
-                    .padStart(6, "0")}
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="font-medium">Detalles de la Compra</h3>
-                <div className="space-y-2">
-                  {cart.map((item) => (
-                    <div key={item.planta.id} className="flex justify-between">
-                      <div>
-                        <p className="font-medium">{item.planta.nombre}</p>
-                        <p className="text-sm text-muted-foreground">Cantidad: {item.cantidad}</p>
-                        <p className="text-xs text-muted-foreground">Vendedor: {item.planta.vendedor}</p>
-                        <p className="text-xs text-muted-foreground">Ubicación: {item.planta.ubicacion}</p>
-                      </div>
-                      <p className="font-medium">${(item.planta.precio * item.cantidad).toLocaleString("es-CO")}</p>
-                    </div>
-                  ))}
-                </div>
-                <Separator />
-                <div className="flex justify-between font-bold">
-                  <p>Total</p>
-                  <p>${cartTotal.toLocaleString("es-CO")}</p>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-medium">Información de Cliente</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                  <div>
-                    <p className="font-medium">Nombre:</p>
-                    <p>{shippingInfo.nombre}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Documento:</p>
-                    <p>{shippingInfo.documento}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Teléfono:</p>
-                    <p>{shippingInfo.telefono}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium">Email:</p>
-                    <p>{shippingInfo.email}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-medium">Método de Entrega</h3>
-                <p className="text-sm">{deliveryMethod === "envio" ? "Envío a domicilio" : "Recoger en tienda"}</p>
-                {deliveryMethod === "envio" && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm mt-2">
-                    <div>
-                      <p className="font-medium">Dirección:</p>
-                      <p>{shippingInfo.direccion}</p>
-                    </div>
-                    <div>
-                      <p className="font-medium">Ciudad:</p>
-                      <p>{shippingInfo.ciudad}</p>
-                    </div>
-                  </div>
-                )}
-                {deliveryMethod === "recoger" && (
-                  <div className="text-sm mt-2">
-                    <p>
-                      Por favor recoja sus productos en las ubicaciones de cada vendedor indicadas en el detalle de la
-                      compra.
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-medium">Método de Pago</h3>
-                <p className="text-sm">
-                  {paymentMethod === "tarjeta" && "Tarjeta de Crédito/Débito"}
-                  {paymentMethod === "nequi" && "Nequi"}
-                  {paymentMethod === "pse" && "PSE"}
-                  {paymentMethod === "solana" && "Solana"}
-                  {paymentMethod === "eth" && "Ethereum"}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-medium">Información de Envío</h3>
-                <p className="text-sm">
-                  {deliveryMethod === "envio"
-                    ? "Tu pedido será enviado en los próximos 2-3 días hábiles. Recibirás un correo electrónico con los detalles de seguimiento."
-                    : "Tus productos estarán disponibles para recoger en 24 horas. Por favor presenta tu documento de identidad y número de orden."}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-medium">Política de Devoluciones</h3>
-                <p className="text-sm">
-                  Si tu planta llega en mal estado, tienes 48 horas para notificarnos y procederemos con el reemplazo
-                  sin costo adicional.
-                </p>
-              </div>
-
-              <div className="text-center pt-4">
-                <p className="text-sm">¡Gracias por tu compra!</p>
-                <Button className="mt-4 bg-green-600 hover:bg-green-700" onClick={finishPurchase}>
-                  Finalizar
-                </Button>
-              </div>
+          <div className="space-y-4">
+            <div className="border-b pb-4">
+              <h3 className="font-medium">Información del Cliente</h3>
+              <p><strong>Nombre:</strong> {shippingInfo.nombre}</p>
+              <p><strong>Documento:</strong> {shippingInfo.documento}</p>
+              <p><strong>Teléfono:</strong> {shippingInfo.telefono}</p>
+              <p><strong>Email:</strong> {shippingInfo.email}</p>
+              {deliveryMethod === "envio" && (
+                <>
+                  <p><strong>Dirección:</strong> {shippingInfo.direccion}</p>
+                  <p><strong>Ciudad:</strong> {shippingInfo.ciudad}</p>
+                </>
+              )}
             </div>
-          </ScrollArea>
+
+            <div className="border-b pb-4">
+              <h3 className="font-medium">Detalles de la Compra</h3>
+              {cart.map((item) => (
+                <div key={item.planta.id} className="flex justify-between">
+                  <div>
+                    <p className="font-medium">{item.planta.nombre}</p>
+                    <p className="text-sm text-muted-foreground">Cantidad: {item.cantidad}</p>
+                    <p className="text-xs text-muted-foreground">Vendedor: {item.planta.vendedor}</p>
+                  </div>
+                  <p className="font-medium">${(item.planta.precio * item.cantidad).toLocaleString("es-CO")}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-b pb-4">
+              <h3 className="font-medium">Extras Seleccionados</h3>
+              {selectedExtras.length > 0 ? (
+                selectedExtras.map((extra) => (
+                  <div key={extra.nombre} className="flex justify-between">
+                    <p>{extra.nombre}</p>
+                    <p>${extra.precio.toLocaleString("es-CO")}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground">No se seleccionaron extras.</p>
+              )}
+            </div>
+
+            <div className="flex justify-between font-bold">
+              <p>Total</p>
+              <p>${totalWithExtras.toLocaleString("es-CO")}</p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button className="w-full bg-green-600 hover:bg-green-700" onClick={() => window.print()}>
+              Imprimir
+            </Button>
+            <Button className="w-full" variant="outline" onClick={finishPurchase}>
+              Finalizar
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
@@ -1136,6 +1221,110 @@ export default function MarketplacePage() {
             </div>
           </ScrollArea>
         </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedPlant} onOpenChange={() => setSelectedPlant(null)}>
+        {selectedPlant && (
+          <DialogContent className="sm:max-w-[90%] md:max-w-[700px] h-auto max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{selectedPlant.nombre}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div className="relative h-80 w-full">
+                <Image
+                  src={selectedPlant.imagen || "/placeholder.svg"}
+                  fill
+                  alt={selectedPlant.nombre}
+                  className="object-cover rounded-md"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">{selectedPlant.descripcion}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-medium">Datos</h3>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <svg className="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h11M9 21V3m0 0L3 10m6-7l6 7" />
+                    </svg>
+                    Vendedor: {selectedPlant.vendedor}
+                  </p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <svg className="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a4 4 0 00-8 0v2m-2 0a6 6 0 0112 0v2a2 2 0 01-2 2h-8a2 2 0 01-2-2V9m10 0H7" />
+                    </svg>
+                    Ubicación: {selectedPlant.ubicacion}
+                  </p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1 mt-2">
+                    <svg className="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M10 14h4" />
+                    </svg>
+                    Cuidados: {selectedPlant.cuidados}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-medium">Productos Recomendados</h3>
+                  <div className="space-y-2">
+                    {recommendedProducts.map((extra) => (
+                      <div key={extra.nombre} className="flex items-center justify-between">
+                        <Label htmlFor={extra.nombre}>{extra.nombre}</Label>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium">${extra.precio.toLocaleString("es-CO")}</span>
+                          <Checkbox
+                            id={extra.nombre}
+                            checked={!!selectedExtras.find((item) => item.nombre === extra.nombre)}
+                            onCheckedChange={() => toggleExtra(extra)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <Separator />
+              <div className="flex justify-between font-bold">
+                <p>Total con Extras</p>
+                <p>${totalWithExtras.toLocaleString("es-CO")}</p>
+              </div>
+              <div className="flex justify-between items-center mt-4">
+                <div className="flex items-center gap-4">
+                  <p className="text-sm font-medium">Cantidad:</p>
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => setSelectedPlant((prev) => prev ? { ...prev, cantidad: Math.max((prev.cantidad || 1) - 1, 1) } : prev)}
+                    >
+                      -
+                    </Button>
+                    <span className="text-center w-8">{selectedPlant.cantidad || 1}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => setSelectedPlant((prev) => prev ? { ...prev, cantidad: (prev.cantidad || 1) + 1 } : prev)}
+                    >
+                      +
+                    </Button>
+                  </div>
+                </div>
+                <p className="text-lg font-bold text-green-800">${selectedPlant.precio.toLocaleString("es-CO")}</p>
+              </div>
+              <Button
+                className="w-full bg-green-600 hover:bg-green-700"
+                onClick={() => {
+                  addToCart(selectedPlant)
+                  setSelectedExtras([])
+                  setSelectedPlant(null)
+                }}
+              >
+                Añadir al Carrito
+              </Button>
+            </div>
+            <DialogFooter>
+            </DialogFooter>
+          </DialogContent>
+        )}
       </Dialog>
 
       <footer className="w-full border-t bg-green-800 text-white py-6">

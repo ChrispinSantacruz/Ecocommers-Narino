@@ -13,6 +13,7 @@ type Message = {
   text: string
   sender: "user" | "bot"
   timestamp: Date
+  options?: string[]
 }
 
 const initialMessages: Message[] = [
@@ -28,36 +29,59 @@ const botResponses = [
   {
     keywords: ["hola", "buenos dias", "buenas tardes", "saludos"],
     response: "¡Hola! ¿En qué puedo ayudarte con nuestras plantas?",
+    options: ["¿Cuáles son los métodos de pago?", "¿Hacen envíos?", "¿Qué plantas tienen disponibles?"],
   },
   {
     keywords: ["precio", "costo", "valor", "cuanto cuesta"],
     response: "Nuestras plantas tienen precios desde $15.000 hasta $75.000 dependiendo del tipo y tamaño.",
+    options: ["¿Tienen descuentos?", "¿Cuánto cuesta el envío?", "¿Qué incluye el precio?"],
   },
   {
     keywords: ["envio", "entrega", "domicilio", "enviar"],
     response:
       "Realizamos envíos a toda Colombia. El tiempo de entrega es de 2-3 días hábiles y puedes elegir entre envío a domicilio o recoger en tienda.",
+    options: ["¿Cuánto cuesta el envío?", "¿Puedo recoger en tienda?", "¿Qué pasa si mi planta llega dañada?"],
   },
   {
     keywords: ["pago", "tarjeta", "nequi", "pse", "solana", "ethereum", "eth", "crypto"],
     response: "Aceptamos pagos con tarjeta de crédito/débito, Nequi, PSE, Solana y Ethereum.",
+    options: ["¿Cómo pagar con Nequi?", "¿Aceptan pagos en efectivo?", "¿Es seguro pagar en línea?"],
   },
   {
     keywords: ["cuidado", "cuidar", "riego", "luz", "sol", "agua"],
     response:
       "Cada planta tiene necesidades específicas de cuidado. Te recomendamos revisar la descripción detallada de cada producto donde encontrarás instrucciones de cuidado.",
-  },
-  {
-    keywords: ["interior", "exterior", "jardin", "casa", "apartamento"],
-    response: "Tenemos plantas tanto para interior como exterior. Puedes filtrar por categoría en nuestra tienda.",
+    options: ["¿Cuánta agua necesita una planta?", "¿Qué plantas son de interior?", "¿Qué plantas necesitan más luz?"],
   },
   {
     keywords: ["garantia", "devolucion", "cambio", "reembolso"],
     response: "Ofrecemos garantía de 48 horas. Si tu planta llega en mal estado, la reemplazamos sin costo adicional.",
+    options: ["¿Cómo funciona la garantía?", "¿Qué cubre la garantía?", "¿Cómo solicito un cambio?"]
   },
   {
-    keywords: ["contacto", "telefono", "email", "correo", "whatsapp"],
-    response: "Puedes contactarnos al correo info@ecocommers-narino.com o al teléfono 300-123-4567.",
+    keywords: ["ubicacion", "direccion", "donde estan"],
+    response: "Estamos ubicados en Pasto, Colombia. Puedes visitarnos en nuestra tienda física.",
+    options: ["¿Cuál es el horario de atención?", "¿Cómo llegar a la tienda?", "¿Tienen otras sucursales?"]
+  },
+  {
+    keywords: ["descuento", "promocion", "oferta"],
+    response: "Actualmente tenemos un 10% de descuento en todas las plantas de interior. ¡Aprovecha ahora!",
+    options: ["¿Cuánto dura la promoción?", "¿Qué productos están en descuento?", "¿Hay descuentos para clientes frecuentes?"]
+  },
+  {
+    keywords: ["plagas", "insectos", "problemas", "enfermedades"],
+    response: "Si tu planta tiene plagas, te recomendamos usar productos orgánicos específicos para controlarlas. Consulta con nosotros para más detalles.",
+    options: ["¿Qué productos recomiendan?", "¿Cómo prevenir plagas?", "¿Qué hacer si mi planta está enferma?"]
+  },
+  {
+    keywords: ["tierra", "sustrato", "fertilizante", "abono"],
+    response: "Ofrecemos sustratos y fertilizantes ideales para cada tipo de planta. Encuéntralos en nuestra tienda.",
+    options: ["¿Qué sustrato es mejor para mi planta?", "¿Con qué frecuencia debo fertilizar?", "¿Venden abono orgánico?"]
+  },
+  {
+    keywords: ["regalo", "cumpleaños", "aniversario"],
+    response: "Una planta es un regalo perfecto. Ofrecemos opciones de empaque especial para ocasiones especiales.",
+    options: ["¿Qué plantas recomiendan para regalar?", "¿Tienen tarjetas de regalo?", "¿Puedo personalizar el empaque?"]
   },
 ]
 
@@ -78,44 +102,57 @@ export function Chatbot() {
     }
   }, [messages, isOpen])
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() === "") return
+  const handleSendMessage = (message?: string) => {
+    const userMessage = message || newMessage
+    if (userMessage.trim() === "") return
 
-    // Add user message
-    const userMessage: Message = {
+    const userMessageObj: Message = {
       id: messages.length + 1,
-      text: newMessage,
+      text: userMessage,
       sender: "user",
       timestamp: new Date(),
     }
 
-    setMessages((prev) => [...prev, userMessage])
+    setMessages((prev) => [...prev, userMessageObj])
     setNewMessage("")
 
-    // Generate bot response
     setTimeout(() => {
-      const botMessage: Message = {
+      const botResponse = generateBotResponse(userMessage)
+      const botMessageObj: Message = {
         id: messages.length + 2,
-        text: generateBotResponse(newMessage),
+        text: botResponse.response,
         sender: "bot",
         timestamp: new Date(),
+        options: botResponse.options,
       }
-      setMessages((prev) => [...prev, botMessage])
+
+      setMessages((prev) => [...prev, botMessageObj])
+
+      if (botResponse.options.length > 0) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: messages.length + 3,
+            text: "Opciones:",
+            sender: "bot",
+            timestamp: new Date(),
+            options: botResponse.options,
+          },
+        ])
+      }
     }, 500)
   }
 
-  const generateBotResponse = (userMessage: string): string => {
+  const generateBotResponse = (userMessage: string): { response: string; options: string[] } => {
     const lowercaseMessage = userMessage.toLowerCase()
 
-    // Check for keyword matches
     for (const item of botResponses) {
       if (item.keywords.some((keyword) => lowercaseMessage.includes(keyword))) {
-        return item.response
+        return { response: item.response, options: item.options || [] }
       }
     }
 
-    // Default response if no keywords match
-    return "Lo siento, no tengo información específica sobre eso. ¿Puedo ayudarte con algo más sobre nuestras plantas o servicios?"
+    return { response: "Lo siento, no tengo información específica sobre eso. ¿Puedo ayudarte con algo más?", options: [] }
   }
 
   const toggleChat = () => {
@@ -190,6 +227,21 @@ export function Chatbot() {
                           )}
                           <div>
                             <p className="text-xs">{message.text}</p>
+                            {message.options && (
+                              <div className="mt-2 space-y-1">
+                                {message.options.map((option, index) => (
+                                  <Button
+                                    key={index}
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-xs"
+                                    onClick={() => handleSendMessage(option)}
+                                  >
+                                    {option}
+                                  </Button>
+                                ))}
+                              </div>
+                            )}
                             <p
                               className={`text-[10px] mt-1 ${
                                 message.sender === "user" ? "text-green-100" : "text-gray-500"

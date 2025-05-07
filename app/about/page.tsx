@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Leaf, Github, Linkedin, Mail, Globe } from "lucide-react"
+import { Leaf, Github, Linkedin, Mail, Globe, MapPin } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -47,7 +47,7 @@ const teamMembers = [
     name: "Jhon Ortiz",
     role: "Ingeniero de Software",
     bio: "Backend. Especializado en desarrollo de APIs, bases de datos y arquitectura de servidores.",
-    image: "/placeholder.svg?height=300&width=300&text=Jhon",
+    image: "/images/jhonortiz.webp?height=300&width=300&text=Jhon",
     github: "https://github.com/jhonortiz",
     linkedin: "https://linkedin.com/in/jhonortiz",
     email: "jhon@espuma-tech.com",
@@ -101,8 +101,8 @@ export default function AboutPage() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-green-50 to-white">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-4 md:py-8 lg:py-10 bg-gradient-to-b from-green-50 to-white">
+          <div className="container px-2 md:px-3">
             <div className="flex flex-col items-center text-center space-y-4 mb-12">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-green-800">Nuestro Equipo</h1>
               <p className="max-w-[700px] text-gray-600 md:text-xl">
@@ -141,33 +141,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 bg-green-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-green-800">Nuestra Trayectoria</h2>
-              <p className="max-w-[700px] text-gray-600 md:text-xl">
-                Desde 2020, hemos estado desarrollando soluciones digitales para el sector agrícola y ambiental, con un
-                enfoque en la sostenibilidad y la innovación.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {projects.map((project, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 md:py-24 bg-white">
-          <div className="container px-4 md:px-6">
+        <section className="w-full py-4 md:py-8 bg-white">
+          <div className="container px-2 md:px-3">
             <div className="flex flex-col items-center text-center space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-green-800">Nuestra Misión</h2>
               <p className="max-w-[700px] text-gray-600 md:text-xl">
@@ -181,6 +156,27 @@ export default function AboutPage() {
                     Visitar Nuestro Portafolio
                   </Link>
                 </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-4 md:py-8 bg-green-50">
+          <div className="container px-2 md:px-3">
+            <div className="flex flex-col items-center text-center space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-green-800">Contáctanos</h2>
+              <p className="max-w-[700px] text-gray-600 md:text-xl">
+                ¿Tienes un proyecto en mente? ¡Hablemos! Estamos aquí para ayudarte a llevar tus ideas a la realidad.
+              </p>
+              <div className="flex flex-col items-center gap-4 mt-6">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-5 w-5 text-green-600" />
+                  <span className="text-gray-600">espuma.tech.startup@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-green-600" />
+                  <span className="text-gray-600">Pasto, Colombia</span>
+                </div>
               </div>
             </div>
           </div>

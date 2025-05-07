@@ -1,17 +1,24 @@
+"use client";
+
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react"
+import { ArrowRight, Leaf, ShieldCheck, Truck, Menu } from "lucide-react"
+import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 
 export default function LandingPage() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="sticky top-0 z-50 w-full border-b bg-white">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <Leaf className="h-6 w-6 text-green-600" />
-            <span className="text-xl font-bold text-green-800">Ecocommers Nariño</span>
+            <Link href="/" className="flex items-center gap-2">
+              <Leaf className="h-6 w-6 text-green-600" />
+              <span className="text-xl font-bold text-green-800">Ecocommers Nariño</span>
+            </Link>
           </div>
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="text-green-800 font-medium hover:text-green-600">
@@ -24,13 +31,32 @@ export default function LandingPage() {
               Nosotros
             </Link>
           </nav>
-          <Button asChild className="bg-green-600 hover:bg-green-700">
+          <Button asChild className="bg-green-600 hover:bg-green-700 text-xs md:text-base">
             <Link href="/marketplace">Comprar Ahora</Link>
           </Button>
+          <Button variant="outline" size="icon" className="md:hidden" onClick={() => setShowMobileMenu(!showMobileMenu)}>
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
+        {showMobileMenu && (
+          <div className="md:hidden bg-white border-t">
+            <div className="p-4">
+              <Link href="/" className="block text-green-800 font-medium hover:text-green-600 mb-2">
+                Inicio
+              </Link>
+              <Link href="/marketplace" className="block text-green-800 font-medium hover:text-green-600 mb-2">
+                Tienda
+              </Link>
+              <Link href="/about" className="block text-green-800 font-medium hover:text-green-600">
+                Nosotros
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
+
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-green-50 to-white">
+        <section className="w-full py-4 md:py-8 lg:py-10 bg-gradient-to-b from-green-50 to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -51,20 +77,21 @@ export default function LandingPage() {
                   </Button>
                 </div>
               </div>
-              <div className="mx-auto w-full max-w-[500px] lg:max-w-none relative">
+              <div className="mx-auto w-full max-w-[500px] lg:max-w-none relative h-[400px]">
                 <Image
-                  src="/placeholder.svg?height=550&width=550"
-                  width={550}
-                  height={550}
+                  src="/SvgEcommers.svg"
+                  layout="intrinsic"
+                  width={400}
+                  height={400}
                   alt="Colección de plantas"
-                  className="mx-auto aspect-square rounded-xl object-cover w-full"
+                  className="mx-auto aspect-square rounded-xl"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+        <section className="w-full py-4 md:py-8 lg:py-10 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -110,7 +137,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-green-50">
+        <section className="w-full py-4 md:py-8 lg:py-10 bg-green-50">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-3 items-center justify-center">
               <div className="flex flex-col items-center space-y-2 text-center">
