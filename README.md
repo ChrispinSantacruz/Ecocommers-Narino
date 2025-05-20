@@ -93,10 +93,5 @@ Si deseas contribuir al proyecto, por favor sigue estos pasos:
    ```
 5. Abre un Pull Request en GitHub.
 
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
----
 
 ¡Gracias por apoyar el comercio local en Nariño! 🌱
